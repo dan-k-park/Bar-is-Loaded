@@ -1,1 +1,2 @@
 # Weight-Visualizer
+A trinket to visualize a loaded barbell in a competition setting.  The inspiration from this came from a friend of mine who competed at a local powerlifting meet.  The loaders misloaded several of her attempts, which ruined the momentum she had built up from training for the competition.
