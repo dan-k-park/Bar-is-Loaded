@@ -1,13 +1,13 @@
 let PLATES = [
-  {w: 25, color: 'red', num: 0, width: 27, height: 200},
-  {w: 20, color: 'blue', num: 0, width: 22.5, height: 200},
-  {w: 15, color: 'yellow', num: 0, width: 21, height: 180},
-  {w: 10, color: 'green', num: 0, width: 21, height: 150},
-  {w: 5, color: 'white', num: 0, width: 21.5, height: 120},
-  {w: 2.5, color: 'black', num: 0, width: 16, height: 90},
-  {w: 1.25, color: 'silver', num: 0, width: 12, height: 60},
-  {w: 0.5, color: 'silver', num: 0, width: 8, height: 40},
-  {w: 0.25, color: 'silver', num: 0, width: 6, height: 30}
+  {w: 25, color: 'red', num: 0, width: 21, height: 250},
+  {w: 20, color: 'blue', num: 0, width: 19, height: 250},
+  {w: 15, color: 'yellow', num: 0, width: 17, height: 230},
+  {w: 10, color: 'green', num: 0, width: 17, height: 200},
+  {w: 5, color: 'white', num: 0, width: 17.5, height: 170},
+  {w: 2.5, color: 'black', num: 0, width: 12, height: 140},
+  {w: 1.25, color: 'silver', num: 0, width: 8, height: 110},
+  {w: 0.5, color: 'silver', num: 0, width: 7, height: 90},
+  {w: 0.25, color: 'silver', num: 0, width: 6, height: 70}
 ]
 
 let UNITS = 'kg'
@@ -45,7 +45,7 @@ const changeEverything = evt => {
 
 const createBar = (ctx, canvas) => {
   ctx.beginPath()
-  ctx.rect(canvas.width - 30, canvas.height / 2 - 12, 60, 24)
+  ctx.rect(canvas.width - 30, canvas.height / 2 - 12, 40, 24)
   ctx.fillStyle = '#cccccc'
   ctx.fill();
   ctx.strokeRect(canvas.width - 30, canvas.height / 2 - 12, 60, 24);
@@ -83,20 +83,20 @@ const createWeight = (ctx, canvas, weight) => {
   if (weight < 25) {
     // collar
     ctx.beginPath()
-    ctx.rect(canvas.width - 84, canvas.height / 2 - 40, 40, 80)
+    ctx.rect(canvas.width - 82, canvas.height / 2 - 40, 40, 80)
     ctx.fillStyle = '#cccccc'
     ctx.fill();
-    ctx.strokeRect(canvas.width - 84, canvas.height / 2 - 40, 40, 80)
+    ctx.strokeRect(canvas.width - 82, canvas.height / 2 - 40, 40, 80)
   }
 
   for (let i = 0; i < PLATES.length; i++) {
     if (PLATES[i].num > 0) {
-      for (let j = 0; j < PLATES[i].num; j++) {
+      for (let j = 1; j <= PLATES[i].num; j++) {
         ctx.beginPath()
-        ctx.rect(canvas.width - 42 + j * PLATES[i].width, canvas.height / 2 - PLATES[i].height / 2, PLATES[i].width, PLATES[i].height)
+        ctx.rect(canvas.width - (42 + j * PLATES[i].width), canvas.height / 2 - PLATES[i].height / 2, PLATES[i].width, PLATES[i].height)
         ctx.fillStyle = PLATES[i].color
         ctx.fill();
-        ctx.strokeRect(canvas.width - 42 + j * PLATES[i].width, canvas.height / 2 - PLATES[i].height / 2, PLATES[i].width, PLATES[i].height)
+        ctx.strokeRect(canvas.width - (42 + j * PLATES[i].width), canvas.height / 2 - PLATES[i].height / 2, PLATES[i].width, PLATES[i].height)
       }
     }
   }
