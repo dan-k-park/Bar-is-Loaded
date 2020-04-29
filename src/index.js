@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   input.addEventListener('input', changeEverything)
   createBar(ctx, canvas)
   createGuide(ctx)
-  createWeight(ctx, canvas, 0)
+  createWeight(ctx, canvas)
 })
 
 const changeEverything = evt => {
@@ -84,7 +84,15 @@ const createGuide = ctx => {
   }
 }
 
-const createWeight = (ctx, canvas, weight) => {
+const createCollar = (ctx, canvas, x) => {
+  ctx.beginPath()
+  ctx.rect(canvas.width - x, canvas.height / 2 - 40, 40, 80)
+  ctx.fillStyle = '#cccccc'
+  ctx.fill();
+  ctx.strokeRect(canvas.width - x, canvas.height / 2 - 40, 40, 80)
+}
+
+const createWeight = (ctx, canvas) => {
   let currStack = 0
   let prevStack = 0
   for (let i = 0; i < PLATES.length; i++) {
@@ -100,10 +108,6 @@ const createWeight = (ctx, canvas, weight) => {
     }
     prevStack = currStack
   }
-  ctx.beginPath()
-  ctx.rect(canvas.width - currStack, canvas.height / 2 - 40, 40, 80)
-  ctx.fillStyle = '#cccccc'
-  ctx.fill();
-  ctx.strokeRect(canvas.width - currStack, canvas.height / 2 - 40, 40, 80)
+  
 }
 

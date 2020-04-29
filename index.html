@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <title>Bar is Loaded</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <script src="./src/index.js"></script>
   </head>
   <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-
     <div style="text-align:center">
       <h1 id="header">Bar is Loaded</h1>
-      <input id="weight" type="number" min="25"></input>
+      
+      <div class="ui icon input">
+        <input id="weight" type="number" min="25"></input>
+      </div>
       <canvas style="background-color:#e6e6e6;" id="visualizer" width="800" height="500" style="border:1px solid #000000"></canvas>
     </div>
   </body>
