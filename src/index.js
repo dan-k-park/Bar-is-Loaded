@@ -33,7 +33,7 @@ const changeEverything = evt => {
   let weight = evt.target.value - 25
 
   if (UNITS == "Pounds") {
-    weight = Math.ceil(weight / 2.20462)
+    weight = Math.ceil(evt.target.value / 2.20462) - 25
   }
 
   let canvas = document.getElementById("visualizer")
