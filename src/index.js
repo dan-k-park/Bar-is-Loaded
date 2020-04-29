@@ -48,15 +48,18 @@ const createBar = (ctx, canvas) => {
   }
 }
 
-const createGuide = (ctx, canvas, input) => {
-  for (let i = 0; i < 10; i++) {
+const createGuide = (ctx, input) => {
+  ctx.font = '15px Arial'
+  for (let i = 0; i <= 9; i++) {
     ctx.beginPath();
-    ctx.arc(30, 30 + 40 * i, 12, 0, 2 * Math.PI, false);
+    ctx.arc(30, 30 + 40 * i, 14, 0, 2 * Math.PI, false);
     ctx.fillStyle = PLATES[i].color
     ctx.fill();
     ctx.lineWidth = 3;
     ctx.strokeStyle = 'black'
     ctx.stroke();
+    ctx.fillStyle = 'black'
+    ctx.fillText(`${PLATES[i].w}kg x 0`, 50, 36 + 40 * i);
   }
 }
 
