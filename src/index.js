@@ -62,6 +62,11 @@ const createBar = (ctx, canvas) => {
   ctx.fill();
   ctx.strokeRect(canvas.width - 330, canvas.height / 2 - 20, 288, 40)
 
+  ctx.beginPath()
+  ctx.rect(canvas.width - 82, canvas.height / 2 - 40, 40, 80)
+  ctx.fillStyle = '#cccccc'
+  ctx.fill();
+  ctx.strokeRect(canvas.width - 82, canvas.height / 2 - 40, 40, 80)
 }
 
 const createGuide = ctx => {
@@ -80,25 +85,25 @@ const createGuide = ctx => {
 }
 
 const createWeight = (ctx, canvas, weight) => {
-  if (weight < 25) {
-    // collar
-    ctx.beginPath()
-    ctx.rect(canvas.width - 82, canvas.height / 2 - 40, 40, 80)
-    ctx.fillStyle = '#cccccc'
-    ctx.fill();
-    ctx.strokeRect(canvas.width - 82, canvas.height / 2 - 40, 40, 80)
-  }
-
+  let currStack = 0
+  let prevStack = 0
   for (let i = 0; i < PLATES.length; i++) {
     if (PLATES[i].num > 0) {
       for (let j = 1; j <= PLATES[i].num; j++) {
+        currStack = j * PLATES[i].width + prevStack
         ctx.beginPath()
-        ctx.rect(canvas.width - (42 + j * PLATES[i].width), canvas.height / 2 - PLATES[i].height / 2, PLATES[i].width, PLATES[i].height)
+        ctx.rect(canvas.width - (42 + currStack), canvas.height / 2 - PLATES[i].height / 2, PLATES[i].width, PLATES[i].height)
         ctx.fillStyle = PLATES[i].color
         ctx.fill();
-        ctx.strokeRect(canvas.width - (42 + j * PLATES[i].width), canvas.height / 2 - PLATES[i].height / 2, PLATES[i].width, PLATES[i].height)
+        ctx.strokeRect(canvas.width - (42 + currStack), canvas.height / 2 - PLATES[i].height / 2, PLATES[i].width, PLATES[i].height)
       }
     }
+    prevStack = currStack
   }
+  ctx.beginPath()
+  ctx.rect(canvas.width - currStack, canvas.height / 2 - 40, 40, 80)
+  ctx.fillStyle = '#cccccc'
+  ctx.fill();
+  ctx.strokeRect(canvas.width - currStack, canvas.height / 2 - 40, 40, 80)
 }
 
