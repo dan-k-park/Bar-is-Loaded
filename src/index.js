@@ -24,6 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
   input.addEventListener("input", changeEverything)
   createBar(ctx, canvas)
   createGuide(ctx)
+
+  // Initial readout when no input has been submitted
+  // defaults to 25kg/55lb i.e. empty bar w/ collar
+  ctx.font = "60px Arial"
+  ctx.fillStyle = "black"
+  ctx.fillText(`25kg | 55lb`, canvas.width / 3.4, 70)
 })
 
 const changeUnits = evt => {
@@ -32,17 +38,19 @@ const changeUnits = evt => {
 }
 
 const changeEverything = evt => {
-  let weight = evt.target.value - 25
-
-  if (UNITS == "Pounds") {
+  let weight = 0
+  if (UNITS == "Kilograms") {
+    weight = evt.target.value - 25
+  } else {
     weight = Math.ceil(evt.target.value / 2.20462) - 25
   }
-
+  
   BAR_WEIGHT = weight
 
   let canvas = document.getElementById("visualizer")
   let ctx = canvas.getContext("2d")
 
+  // Reset from previous loads
   PLATES.forEach(plate => plate.num = 0)
 
   for (let i = 0; i < PLATES.length; i++) {
@@ -53,39 +61,20 @@ const changeEverything = evt => {
   }
 
   ctx.clearRect(0,0, canvas.width, canvas.height);
+
+  ctx.font = "60px Arial"
+  ctx.fillStyle = "black"
+  if (BAR_WEIGHT <= 0) {
+    ctx.fillText(`25kg | 55lb`, canvas.width / 3.4, 70)
+  } else {
+    ctx.fillText(`${BAR_WEIGHT + 25}kg | ${Math.floor((BAR_WEIGHT + 25) * 2.20462)}lb`, canvas.width / 3.4, 70)
+  }
+
   createGuide(ctx)
   createBar(ctx, canvas)
   createWeight(ctx, canvas, weight)
 }
 
-const createBar = (ctx, canvas) => {
-  ctx.beginPath()
-  ctx.rect(canvas.width - 30, canvas.height / 2 - 12, 40, 24)
-  ctx.fillStyle = "#cccccc"
-  ctx.fill();
-  ctx.strokeRect(canvas.width - 30, canvas.height / 2 - 12, 60, 24);
-  
-  ctx.beginPath()
-  ctx.rect(canvas.width - 42, canvas.height / 2 - 30, 12, 60)
-  ctx.fillStyle = "#cccccc"
-  ctx.fill();
-  ctx.strokeRect(canvas.width - 42, canvas.height / 2 - 30, 12, 60)
-  
-  ctx.beginPath()
-  ctx.rect(canvas.width - 332, canvas.height / 2 - 20, 288, 40)
-  ctx.fillStyle = "#cccccc"
-  ctx.fill();
-  ctx.strokeRect(canvas.width - 330, canvas.height / 2 - 20, 288, 40)
-
-  if (BAR_WEIGHT == 25) {
-    createCollar(ctx, canvas, 82)
-  }
-  // ctx.beginPath()
-  // ctx.rect(canvas.width - 82, canvas.height / 2 - 40, 40, 80)
-  // ctx.fillStyle = "#cccccc"
-  // ctx.fill();
-  // ctx.strokeRect(canvas.width - 82, canvas.height / 2 - 40, 40, 80)
-}
 
 const createGuide = ctx => {
   ctx.font = "15px Arial"
@@ -102,12 +91,28 @@ const createGuide = ctx => {
   }
 }
 
-const createCollar = (ctx, canvas, xOffset) => {
+const createBar = (ctx, canvas) => {
   ctx.beginPath()
-  ctx.rect(canvas.width - xOffset, canvas.height / 2 - 40, 40, 80)
+  ctx.rect(canvas.width - 30, canvas.height / 2 - 12, 40, 24)
   ctx.fillStyle = "#cccccc"
   ctx.fill();
-  ctx.strokeRect(canvas.width - xOffset, canvas.height / 2 - 40, 40, 80)
+  ctx.strokeRect(canvas.width - 30, canvas.height / 2 - 12, 60, 24);
+  
+  ctx.beginPath()
+  ctx.rect(canvas.width - 42, canvas.height / 2 - 30, 12, 60)
+  ctx.fillStyle = "#cccccc"
+  ctx.fill();
+  ctx.strokeRect(canvas.width - 42, canvas.height / 2 - 30, 12, 60)
+  
+  ctx.beginPath()
+  ctx.rect(canvas.width - 344, canvas.height / 2 - 20, 300, 40)
+  ctx.fillStyle = "#cccccc"
+  ctx.fill();
+  ctx.strokeRect(canvas.width - 344, canvas.height / 2 - 20, 300, 40)
+
+  if (BAR_WEIGHT == 25) {
+    createCollar(ctx, canvas, 82)
+  }
 }
 
 const createWeight = (ctx, canvas) => {
@@ -127,5 +132,13 @@ const createWeight = (ctx, canvas) => {
     prevStack = currStack
   }
   
+  createCollar(ctx, canvas, prevStack + 82)
 }
 
+const createCollar = (ctx, canvas, xOffset) => {
+  ctx.beginPath()
+  ctx.rect(canvas.width - xOffset, canvas.height / 2 - 40, 40, 80)
+  ctx.fillStyle = "#cccccc"
+  ctx.fill();
+  ctx.strokeRect(canvas.width - xOffset, canvas.height / 2 - 40, 40, 80)
+}
