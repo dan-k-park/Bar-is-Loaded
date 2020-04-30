@@ -12,16 +12,18 @@ let PLATES = [
 
 let UNITS = "Kilograms"
 
+let BAR_WEIGHT = 25
+
 document.addEventListener("DOMContentLoaded", () => {
   let canvas = document.getElementById("visualizer")
   let ctx = canvas.getContext("2d")
   let input = document.getElementById("weight")
   let units = document.getElementById("units")
+  
   units.addEventListener("click", changeUnits)
   input.addEventListener("input", changeEverything)
   createBar(ctx, canvas)
   createGuide(ctx)
-  createWeight(ctx, canvas)
 })
 
 const changeUnits = evt => {
@@ -35,6 +37,8 @@ const changeEverything = evt => {
   if (UNITS == "Pounds") {
     weight = Math.ceil(evt.target.value / 2.20462) - 25
   }
+
+  BAR_WEIGHT = weight
 
   let canvas = document.getElementById("visualizer")
   let ctx = canvas.getContext("2d")
@@ -73,11 +77,14 @@ const createBar = (ctx, canvas) => {
   ctx.fill();
   ctx.strokeRect(canvas.width - 330, canvas.height / 2 - 20, 288, 40)
 
-  ctx.beginPath()
-  ctx.rect(canvas.width - 82, canvas.height / 2 - 40, 40, 80)
-  ctx.fillStyle = "#cccccc"
-  ctx.fill();
-  ctx.strokeRect(canvas.width - 82, canvas.height / 2 - 40, 40, 80)
+  if (BAR_WEIGHT == 25) {
+    createCollar(ctx, canvas, 82)
+  }
+  // ctx.beginPath()
+  // ctx.rect(canvas.width - 82, canvas.height / 2 - 40, 40, 80)
+  // ctx.fillStyle = "#cccccc"
+  // ctx.fill();
+  // ctx.strokeRect(canvas.width - 82, canvas.height / 2 - 40, 40, 80)
 }
 
 const createGuide = ctx => {
@@ -95,12 +102,12 @@ const createGuide = ctx => {
   }
 }
 
-const createCollar = (ctx, canvas, x) => {
+const createCollar = (ctx, canvas, xOffset) => {
   ctx.beginPath()
-  ctx.rect(canvas.width - x, canvas.height / 2 - 40, 40, 80)
+  ctx.rect(canvas.width - xOffset, canvas.height / 2 - 40, 40, 80)
   ctx.fillStyle = "#cccccc"
   ctx.fill();
-  ctx.strokeRect(canvas.width - x, canvas.height / 2 - 40, 40, 80)
+  ctx.strokeRect(canvas.width - xOffset, canvas.height / 2 - 40, 40, 80)
 }
 
 const createWeight = (ctx, canvas) => {
