@@ -14,6 +14,10 @@ let UNITS = "Kilograms"
 
 let BAR_WEIGHT = 25
 
+let KG_WEIGHT = 25
+
+let LB_WEIGHT = 55
+
 document.addEventListener("DOMContentLoaded", () => {
   let canvas = document.getElementById("visualizer")
   let ctx = canvas.getContext("2d")
@@ -33,8 +37,22 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 const changeUnits = evt => {
-  UNITS == "Kilograms" ? UNITS = "Pounds" : UNITS = "Kilograms"
+  let convertedWeight = 0
+  if (UNITS == "Kilograms") {
+    UNITS = "Pounds"
+    convertedWeight = Math.ceil((BAR_WEIGHT) / 2.20462) + 55
+  } else {
+    UNITS = "Kilograms"
+    convertedWeight = Math.floor(BAR_WEIGHT * 2.20462) + 25
+  }
   evt.target.textContent = UNITS
+
+  let obj = {
+    'target': {
+      'value': convertedWeight
+    }
+  }
+  changeEverything(obj)
 }
 
 const changeEverything = evt => {
