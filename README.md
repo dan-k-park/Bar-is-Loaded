@@ -1,2 +1,2 @@
-# Weight-Visualizer
-A trinket to visualize a loaded barbell in a competition setting.  The inspiration from this came from a friend of mine who competed at a local powerlifting meet.  The loaders misloaded several of her attempts, which ruined the momentum she had built up from training for the competition.
+# Bar-is_loaded
+A trinket to visualize a loaded barbell in a competition setting.  The idea for this came from a friend of mine who competed at a local powerlifting meet.  Several of her attempts were misloaded, which led to a rather stressful meet day for her.  
