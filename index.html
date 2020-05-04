@@ -9,29 +9,34 @@
   <body>
     <div style="text-align:center">
       <h1 id="header">Bar is Loaded</h1>
-      
-      <div class="ui icon input">
-        <input id="weight" type="number" min="25"></input>
-      </div>
-      <button class="ui button" id="units">Kilograms</button>
-      <div class="ui form">
-        <div class="inline fields">
-          <label>Units:</label>
+
+      <div class="ui raised center aligned segment">
+        <div class="ui form">
           <div class="field">
-            <div class="ui radio checkbox">
-              <input type="radio" name="frequency" checked="checked">
-              <label>Kilograms</label>
-            </div>
+            <label>Weight</label>
+            <input id="weight" type="number" min="25"></input>
           </div>
-          <div class="field">
-            <div class="ui radio checkbox">
-              <input type="radio" name="frequency">
-              <label>Pounds</label>
+          <div class="inline fields">
+            <label>Units:</label>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="unit" id="kg" checked="checked">
+                <label>Kilograms</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="unit" id="lb">
+                <label>Pounds</label>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <canvas style="background-color:#e6e6e6;" id="visualizer" width="800" height="500" style="border:1px solid #000000"></canvas>
+      <div class="ui segment">
+
+        <canvas style="background-color:#e6e6e6;" id="visualizer" width="800" height="500" style="border:1px solid #000000"></canvas>
+      </div>
     </div>
 
 

@@ -12,22 +12,23 @@ let PLATES = [
 
 let UNITS = "Kilograms"
 
-let BAR_WEIGHT = 25
-
-let KG_WEIGHT = 25
-
-let LB_WEIGHT = 55
+let WEIGHT = {
+  "kg": 25,
+  "lb": 55
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   let canvas = document.getElementById("visualizer")
   let ctx = canvas.getContext("2d")
   let input = document.getElementById("weight")
-  let units = document.getElementById("units")
+  let kg_radio = document.getElementById("kg")
+  let lb_radio = document.getElementById("lb")
   
-  units.addEventListener("click", changeUnits)
-  input.addEventListener("input", changeEverything)
-  createBar(ctx, canvas)
-  createGuide(ctx)
+  kg_radio.addEventListener("click", changeUnits)
+  lb_radio.addEventListener("click", changeUnits)
+  input.addEventListener("input", calculateWeight)
+  drawBar(ctx, canvas)
+  drawGuide(ctx)
 
   // Initial readout when no input has been submitted
   // defaults to 25kg/55lb i.e. empty bar w/ collar
@@ -37,33 +38,36 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 const changeUnits = evt => {
+  console.log(evt.target.id)
   let convertedWeight = 0
-  if (UNITS == "Kilograms") {
+  if (evt.target.id == "lb") {
     UNITS = "Pounds"
-    convertedWeight = Math.ceil((BAR_WEIGHT) / 2.20462) + 55
+    convertedWeight = WEIGHT.lb
   } else {
     UNITS = "Kilograms"
-    convertedWeight = Math.floor(BAR_WEIGHT * 2.20462) + 25
+    convertedWeight = WEIGHT.kg
   }
-  evt.target.textContent = UNITS
 
   let obj = {
     'target': {
       'value': convertedWeight
     }
   }
-  changeEverything(obj)
+  calculateWeight(obj)
 }
 
-const changeEverything = evt => {
+const calculateWeight = evt => {
+
   let weight = 0
   if (UNITS == "Kilograms") {
     weight = evt.target.value - 25
+    WEIGHT.kg = weight
+    WEIGHT.lb = Math.floor(weight * 2.20462) + 55
   } else {
     weight = Math.ceil(evt.target.value / 2.20462) - 25
+    WEIGHT.kg = weight
+    WEIGHT.lb = evt.target.value - 55
   }
-  
-  BAR_WEIGHT = weight
 
   let canvas = document.getElementById("visualizer")
   let ctx = canvas.getContext("2d")
@@ -82,19 +86,19 @@ const changeEverything = evt => {
 
   ctx.font = "60px Arial"
   ctx.fillStyle = "black"
-  if (BAR_WEIGHT <= 0) {
+  if (WEIGHT.kg <= 0) {
     ctx.fillText(`25kg | 55lb`, canvas.width / 3.4, 70)
   } else {
-    ctx.fillText(`${BAR_WEIGHT + 25}kg | ${Math.floor((BAR_WEIGHT + 25) * 2.20462)}lb`, canvas.width / 3.4, 70)
+    ctx.fillText(`${WEIGHT.kg + 25}kg | ${Math.floor((WEIGHT.kg + 25) * 2.20462)}lb`, canvas.width / 3.4, 70)
   }
 
-  createGuide(ctx)
-  createBar(ctx, canvas)
-  createWeight(ctx, canvas, weight)
+  drawGuide(ctx)
+  drawBar(ctx, canvas)
+  drawWeight(ctx, canvas, weight)
 }
 
 
-const createGuide = ctx => {
+const drawGuide = ctx => {
   ctx.font = "15px Arial"
   for (let i = 0; i < 9; i++) {
     ctx.beginPath();
@@ -109,7 +113,7 @@ const createGuide = ctx => {
   }
 }
 
-const createBar = (ctx, canvas) => {
+const drawBar = (ctx, canvas) => {
   ctx.beginPath()
   ctx.rect(canvas.width - 30, canvas.height / 2 - 12, 40, 24)
   ctx.fillStyle = "#cccccc"
@@ -128,12 +132,12 @@ const createBar = (ctx, canvas) => {
   ctx.fill();
   ctx.strokeRect(canvas.width - 344, canvas.height / 2 - 20, 300, 40)
 
-  if (BAR_WEIGHT == 25) {
+  if (WEIGHT.kg == 25) {
     createCollar(ctx, canvas, 82)
   }
 }
 
-const createWeight = (ctx, canvas) => {
+const drawWeight = (ctx, canvas) => {
   let currStack = 0
   let prevStack = 0
   for (let i = 0; i < PLATES.length; i++) {
