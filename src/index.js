@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   kg_radio.addEventListener("click", changeUnits)
   lb_radio.addEventListener("click", changeUnits)
-  input.addEventListener("input", calculateWeight)
+  input.addEventListener("input", changeWeights)
   drawBar(ctx, canvas)
   drawGuide(ctx)
 
@@ -38,35 +38,40 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 const changeUnits = evt => {
-  console.log(evt.target.id)
-  let convertedWeight = 0
   if (evt.target.id == "lb") {
     UNITS = "Pounds"
-    convertedWeight = WEIGHT.lb
+    // Take current weight which is in kg, keep the same number but transform into lb variant
+    WEIGHT.lb = WEIGHT.kg
+    WEIGHT.kg = Math.ceil(WEIGHT.lb / 2.20462)
   } else {
     UNITS = "Kilograms"
-    convertedWeight = WEIGHT.kg
+    WEIGHT.kg = WEIGHT.lb
+    WEIGHT.lb = Math.floor(WEIGHT.kg * 2.20462)
   }
-
-  let obj = {
-    'target': {
-      'value': convertedWeight
-    }
-  }
-  calculateWeight(obj)
+  console.log("Post change: ",WEIGHT.kg, WEIGHT.lb)
+  clearCanvas()
+  calculateWeight()
 }
 
-const calculateWeight = evt => {
+const changeWeights = evt => {
+  let weight = evt.target.value
+  if (UNITS == "Kilograms") {
+    WEIGHT.kg = weight - 25
+    WEIGHT.lb = Math.floor(weight * 2.20462) - 55
+  } else {
+    WEIGHT.kg = Math.ceil(evt.target.value / 2.20462) - 25
+    WEIGHT.lb = weight - 55
+  }
+  console.log("Pre change: ", WEIGHT.kg, WEIGHT.lb)
+  calculateWeight()
+}
 
+const calculateWeight = () => {
   let weight = 0
   if (UNITS == "Kilograms") {
-    weight = evt.target.value - 25
-    WEIGHT.kg = weight
-    WEIGHT.lb = Math.floor(weight * 2.20462) + 55
+    weight = WEIGHT.kg
   } else {
-    weight = Math.ceil(evt.target.value / 2.20462) - 25
-    WEIGHT.kg = weight
-    WEIGHT.lb = evt.target.value - 55
+    weight = Math.ceil(WEIGHT.lb / 2.20462) - 25
   }
 
   let canvas = document.getElementById("visualizer")
@@ -82,14 +87,14 @@ const calculateWeight = evt => {
     }
   }
 
-  ctx.clearRect(0,0, canvas.width, canvas.height);
+  clearCanvas();
 
   ctx.font = "60px Arial"
   ctx.fillStyle = "black"
   if (WEIGHT.kg <= 0) {
     ctx.fillText(`25kg | 55lb`, canvas.width / 3.4, 70)
   } else {
-    ctx.fillText(`${WEIGHT.kg + 25}kg | ${Math.floor((WEIGHT.kg + 25) * 2.20462)}lb`, canvas.width / 3.4, 70)
+    ctx.fillText(`${WEIGHT.kg + 25}kg | ${Math.floor((WEIGHT.lb + 55))}lb`, canvas.width / 3.4, 70)
   }
 
   drawGuide(ctx)
@@ -163,4 +168,10 @@ const createCollar = (ctx, canvas, xOffset) => {
   ctx.fillStyle = "#cccccc"
   ctx.fill();
   ctx.strokeRect(canvas.width - xOffset, canvas.height / 2 - 40, 40, 80)
+}
+
+clearCanvas = () => {
+  let canvas = document.getElementById("visualizer")
+  let ctx = canvas.getContext("2d")
+  ctx.clearRect(0,0, canvas.width, canvas.height);
 }
