@@ -1,2 +1,2 @@
-# Bar-is_loaded
+# Bar-is-loaded
 A trinket to visualize a loaded barbell in a competition setting.  The idea for this came from a friend of mine who competed at a local powerlifting meet.  Several of her attempts were misloaded, which led to a rather stressful meet day for her.  
