@@ -34,7 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // defaults to 25kg/55lb i.e. empty bar w/ collar
   ctx.font = "60px Arial"
   ctx.fillStyle = "black"
-  ctx.fillText(`25kg | 55lb`, canvas.width / 3.4, 70)
+  ctx.fillText(`25kg | 55lb`, canvas.width / 3.2, 70)
+
+  ctx.font = "20px Arial"
+  ctx.fillStyle = "black"
+  ctx.fillText("Note: this rendering represents only one end of the barbell", 20, canvas.height - 25)
 })
 
 const changeUnits = evt => {
@@ -93,8 +97,8 @@ const calculateWeight = () => {
 
   ctx.font = "60px Arial"
   ctx.fillStyle = "black"
-  if (WEIGHT.kg <= 0) {
-    ctx.fillText(`25kg | 55lb`, canvas.width / 3.4, 70)
+  if (WEIGHT.kg <= 25) {
+    ctx.fillText(`25kg | 55lb`, canvas.width / 3.2, 70)
   } else {
     ctx.fillText(`${WEIGHT.kg}kg | ${WEIGHT.lb}lb`, canvas.width / 3.4, 70)
   }
@@ -102,6 +106,11 @@ const calculateWeight = () => {
   drawGuide(ctx)
   drawBar(ctx, canvas)
   drawWeight(ctx, canvas, weight)
+
+  ctx.font = "20px Arial"
+  ctx.fillStyle = "black"
+  ctx.fillText("Note: this rendering represents only one end of the barbell", 20, canvas.height - 25)
+
 }
 
 
@@ -109,14 +118,14 @@ const drawGuide = ctx => {
   ctx.font = "15px Arial"
   for (let i = 0; i < 9; i++) {
     ctx.beginPath();
-    ctx.arc(30, 80 + 40 * i, 14, 0, 2 * Math.PI, false);
+    ctx.arc(30, 100 + 40 * i, 14, 0, 2 * Math.PI, false);
     ctx.fillStyle = PLATES[i].color
     ctx.fill();
     ctx.lineWidth = 3;
     ctx.strokeStyle = "black"
     ctx.stroke();
     ctx.fillStyle = "black"
-    ctx.fillText(`${PLATES[i].w}kg x ${PLATES[i].num}`, 50, 86 + 40 * i);
+    ctx.fillText(`${PLATES[i].w}kg x ${PLATES[i].num}`, 50, 106 + 40 * i);
   }
 }
 
