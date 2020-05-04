@@ -48,7 +48,7 @@ const changeUnits = evt => {
     WEIGHT.kg = WEIGHT.lb
     WEIGHT.lb = Math.floor(WEIGHT.kg * 2.20462)
   }
-  console.log("Post change: ",WEIGHT.kg, WEIGHT.lb)
+
   clearCanvas()
   calculateWeight()
 }
@@ -56,13 +56,13 @@ const changeUnits = evt => {
 const changeWeights = evt => {
   let weight = evt.target.value
   if (UNITS == "Kilograms") {
-    WEIGHT.kg = weight - 25
-    WEIGHT.lb = Math.floor(weight * 2.20462) - 55
+    WEIGHT.kg = weight
+    WEIGHT.lb = Math.floor(weight * 2.20462)
   } else {
-    WEIGHT.kg = Math.ceil(evt.target.value / 2.20462) - 25
-    WEIGHT.lb = weight - 55
+    WEIGHT.kg = Math.ceil(evt.target.value / 2.20462)
+    WEIGHT.lb = weight
   }
-  console.log("Pre change: ", WEIGHT.kg, WEIGHT.lb)
+
   calculateWeight()
 }
 
@@ -71,8 +71,10 @@ const calculateWeight = () => {
   if (UNITS == "Kilograms") {
     weight = WEIGHT.kg
   } else {
-    weight = Math.ceil(WEIGHT.lb / 2.20462) - 25
+    weight = Math.ceil(WEIGHT.lb / 2.20462)
   }
+
+  weight = weight - 25
 
   let canvas = document.getElementById("visualizer")
   let ctx = canvas.getContext("2d")
@@ -94,7 +96,7 @@ const calculateWeight = () => {
   if (WEIGHT.kg <= 0) {
     ctx.fillText(`25kg | 55lb`, canvas.width / 3.4, 70)
   } else {
-    ctx.fillText(`${WEIGHT.kg + 25}kg | ${Math.floor((WEIGHT.lb + 55))}lb`, canvas.width / 3.4, 70)
+    ctx.fillText(`${WEIGHT.kg}kg | ${WEIGHT.lb}lb`, canvas.width / 3.4, 70)
   }
 
   drawGuide(ctx)
