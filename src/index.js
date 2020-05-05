@@ -58,6 +58,12 @@ const changeUnits = evt => {
 }
 
 const changeWeights = evt => {
+  if (evt.target.value > 600 && UNITS == "Kilograms" || evt.target.value > 1322 && UNITS == "Pounds") {
+    alert("Maximum human capabilities exceeded, please enter a lower weight")
+    document.getElementById("weight").value = ""
+    clearCanvas()
+  }
+
   let weight = evt.target.value
   if (UNITS == "Kilograms") {
     WEIGHT.kg = weight
