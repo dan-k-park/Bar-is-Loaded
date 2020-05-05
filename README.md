@@ -1,2 +1,4 @@
 # Bar is Loaded
-A trinket to visualize a loaded barbell in a competition setting.  The idea for this came from a friend of mine who competed at a local powerlifting meet.  Several of her attempts were misloaded, which led to a rather stressful meet day for her.  
+A trinket to visualize a loaded barbell in a competition setting.  Made after a friend of mine competed in a poorly coordinated powerlifting competition in which several of her attempts were misloaded.
+\\n
+Background photo by Victor Freitas on Unsplash
