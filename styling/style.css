@@ -1,14 +1,13 @@
-body, html {
-  height: 100%;
-  margin: 0;
+
+.top-lvl {
+  font-family: "Courier New", Courier, monospace;
+  background: linear-gradient(45deg, #262626 0%, #d9d9d9 100%);
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.top {
-  background-image: url("https://images.unsplash.com/photo-1521805103424-d8f8430e8933?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-}
 
 #visualizer{
   border: solid 1px black;  
