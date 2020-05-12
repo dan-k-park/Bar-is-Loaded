@@ -10,42 +10,40 @@
   </head>
   <body>
     <div style="text-align:center">
-      <h1 id="header" style="color:white;font-size:4rem;">Bar is Loaded</h1>
+      <h1>Bar is Loaded</h1>
       <div class="ui four column centered grid">
         <div class="column">
             <div class="ui form">
               <div class="field">
-                <label style="font-size: 1.3rem;">Weight</label>
+                <label id="weight-inputs">Weight</label>
                 <input id="weight" type="number" min="25"></input>
               </div>
               <div class="inline fields">
-                <label style="font-size: 1.1rem;">Units:</label>
+                <label id="weight-inputs">Units:</label>
                 <div class="field">
                   <div class="ui radio checkbox">
                     <input type="radio" name="unit" id="kg" checked="checked">
-                    <label style="font-size: 1.1rem;">Kilograms</label>
+                    <label id="weight-inputs">Kg</label>
                   </div>
                 </div>
                 <div class="field">
                   <div class="ui radio checkbox">
                     <input type="radio" name="unit" id="lb">
-                    <label style="font-size: 1.1rem;">Pounds</label>
+                    <label id="weight-inputs">Lb</label>
                   </div>
                 </div>
               </div>
             </div>
         </div>
 
-        <div class="fifteen wide column" style="text-align:center;">
+        <div class="fifteen wide column" style="text-align:center">
             <canvas style="background-color:white;" id="visualizer" width="780" height="500" style="border:1px solid #000000"></canvas>
         </div>
       </div>
 
-      <div class="ui two column centered grid">
+      <div class="ui two column centered grid" style="margin-top:0px">
         <div class="column">
-          <div class="ui segment">
-            <div class="ui small header" style="text-align:center;font-size: 1.3rem">How-to</div>
-            <div class="ui divider"></div>
+            <h2 style="text-align:center;color:white;">How-To</h2>
             <ul>
               <li>
                 Enter the desired weight and select your preferred units
@@ -68,7 +66,6 @@
             </ul>
           </div>
         </div>
-        
       </div>  
     </div>
   </body>
