@@ -1,13 +1,14 @@
-
-.top-lvl {
-  font-family: "Courier New", Courier, monospace;
-  background: linear-gradient(45deg, #262626 0%, #d9d9d9 100%);
-
-  background-position: center;
-  background-repeat: no-repeat;
+body {
+  background-image: url("./background.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
 }
 
+ul {
+  font-size: 1.1rem;
+}
 
 #visualizer{
   border: solid 1px black;  
