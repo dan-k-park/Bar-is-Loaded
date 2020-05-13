@@ -1,6 +1,6 @@
 body {
   background-image: url("./background.jpg");
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
@@ -31,6 +31,16 @@ ul {
   -webkit-text-stroke-color: black;
 }
 
+i {
+  color: white;
+  -webkit-text-stroke-width: 0.07rem;
+  -webkit-text-stroke-color: black;
+}
+
+i:hover {
+  cursor: pointer;
+}
+
 #visualizer {
   border: solid 1px black;  
 }
@@ -40,4 +50,22 @@ ul {
   color:white;
   -webkit-text-stroke-width: 0.08rem;
   -webkit-text-stroke-color: black;
+}
+
+#how-to {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  height: 80%;
+}
+
+#question {
+  position: fixed;
+  top: 0;
+  right: 5;
+}
+
+.hidden {
+  display: none;
 }

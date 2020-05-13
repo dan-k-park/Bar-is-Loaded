@@ -9,8 +9,15 @@
 
   </head>
   <body>
+    <div id="header">
+      <h1 style="text-align:center;">Bar is Loaded</h1>
+      <i class="question circle outline big icon" style="position:fixed;top:1.5%;right:1%;"></i>
+    </div>
+    <div class="hidden">
+      <img id="how-to" src="src/assets/how-to.jpeg">
+    </div>
+
     <div style="text-align:center">
-      <h1>Bar is Loaded</h1>
       <div class="ui four column centered grid">
         <div class="column">
             <div class="ui form">
@@ -35,38 +42,11 @@
               </div>
             </div>
         </div>
-
         <div class="fifteen wide column" style="text-align:center">
             <canvas style="background-color:white;" id="visualizer" width="780" height="500" style="border:1px solid #000000"></canvas>
         </div>
       </div>
 
-      <div class="ui two column centered grid" style="margin-top:0px">
-        <div class="column">
-            <h2 style="text-align:center;color:white;">How-To</h2>
-            <ul>
-              <li>
-                Enter the desired weight and select your preferred units
-              </li>
-              <li>
-                The gray block at the end of the weights represents a 2.5kg/5.5lb collar
-              </li>
-              <li>
-                The guide on the left gives the combination of weight plates required to meet the given load per side
-              </li>
-              <li>
-                You may toggle freely between lbs and kg
-              </li>
-              <li>
-                Some inputs may be rounded up/down to the nearest possible lb/kg conversion
-              </li>
-              <li>
-                The minimum load is 25kg (20kg empty bar + 2.5kg collar pair)
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>  
     </div>
   </body>
 </html> 
