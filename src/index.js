@@ -21,12 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let canvas = document.getElementById("visualizer")
   let ctx = canvas.getContext("2d")
   let input = document.getElementById("weight")
-  let kg_radio = document.getElementById("kg")
-  let lb_radio = document.getElementById("lb")
+  let kgRadio = document.getElementById("kg")
+  let lbRadio = document.getElementById("lb")
+  let instructionsButton = document.getElementById("open-instructions")
   
-  kg_radio.addEventListener("click", changeUnits)
-  lb_radio.addEventListener("click", changeUnits)
+  kgRadio.addEventListener("click", changeUnits)
+  lbRadio.addEventListener("click", changeUnits)
   input.addEventListener("input", changeWeights)
+  instructionsButton.addEventListener("click", toggleInstructions)
   drawBar(ctx, canvas)
   drawGuide(ctx)
 
@@ -185,6 +187,25 @@ const createCollar = (ctx, canvas, xOffset) => {
   ctx.fillStyle = "#cccccc"
   ctx.fill();
   ctx.strokeRect(canvas.width - xOffset, canvas.height / 2 - 40, 40, 80)
+}
+
+const toggleInstructions = () => {
+  let open = document.getElementById("open-instructions")
+  let close = document.getElementById("close-instructions")
+  let main = document.getElementById("main-content")
+  let instructions = document.getElementById("instructions")
+
+  open.classList.add("hidden")
+  close.classList.remove("hidden")
+  main.classList.add("hidden")
+  instructions.classList.remove("hidden")
+
+  close.addEventListener("click", () => {
+    open.classList.remove("hidden")
+    close.classList.add("hidden")
+    main.classList.remove("hidden")
+    instructions.classList.add("hidden")
+  })
 }
 
 clearCanvas = () => {

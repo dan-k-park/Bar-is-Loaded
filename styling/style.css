@@ -9,25 +9,8 @@ body {
 
 h1 {
   color:white;
-  font-size: 3rem;
+  font-size: 5rem;
   -webkit-text-stroke-width: 0.15rem;
-  -webkit-text-stroke-color: black;
-}
-
-h2 {
-  color:white;
-  font-size: 2rem;
-  -webkit-text-stroke-width: 0.1rem;
-  -webkit-text-stroke-color: black;
-}
-
-ul {
-  padding-top:1px;
-  padding-left: 1px;
-  padding-right: 1px;
-  font-size: 1.1rem;
-  color: white;
-  -webkit-text-stroke-width: 0.07rem;
   -webkit-text-stroke-color: black;
 }
 
@@ -46,7 +29,7 @@ i:hover {
 }
 
 #weight-inputs {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   color:white;
   -webkit-text-stroke-width: 0.08rem;
   -webkit-text-stroke-color: black;
@@ -54,16 +37,25 @@ i:hover {
 
 #how-to {
   display: block;
+  margin-top: auto;
   margin-left: auto;
   margin-right: auto;
   width: 80%;
-  height: 80%;
+  height: 100%;
 }
 
 #question {
   position: fixed;
   top: 0;
   right: 5;
+}
+
+#main-content {
+  margin-top: 4%;
+}
+
+#instructions {
+  margin-top: 6%;
 }
 
 .hidden {
