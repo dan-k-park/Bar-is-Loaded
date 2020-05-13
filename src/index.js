@@ -44,15 +44,25 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 const changeUnits = evt => {
-  if (evt.target.id == "lb") {
+  if (evt.target.id == "lb" && UNITS != "Pounds") {
     UNITS = "Pounds"
     // Take current weight which is in kg, keep the same number but transform into lb variant
     WEIGHT.lb = WEIGHT.kg
     WEIGHT.kg = Math.ceil(WEIGHT.lb / 2.20462)
-  } else {
-    UNITS = "Kilograms"
-    WEIGHT.kg = WEIGHT.lb
-    WEIGHT.lb = Math.floor(WEIGHT.kg * 2.20462)
+  } 
+  if (evt.target.id == "kg" && UNITS != "Kilograms") {
+    if (WEIGHT.lb > 600) {
+      alert("Please enter a lower weight.")
+      document.getElementById("weight").value = ""
+      clearCanvas()
+      UNITS = "Kilograms"
+      WEIGHT.kg = 25
+      WEIGHT.lb = 55
+    } else {
+      UNITS = "Kilograms"
+      WEIGHT.kg = WEIGHT.lb
+      WEIGHT.lb = Math.floor(WEIGHT.kg * 2.20462)
+    }
   }
 
   clearCanvas()
@@ -61,7 +71,7 @@ const changeUnits = evt => {
 
 const changeWeights = evt => {
   if (evt.target.value > 600 && UNITS == "Kilograms" || evt.target.value > 1322 && UNITS == "Pounds") {
-    alert("Maximum human capabilities exceeded, please enter a lower weight")
+    alert("Please enter a lower weight.")
     document.getElementById("weight").value = ""
     clearCanvas()
   }
