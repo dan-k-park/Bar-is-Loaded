@@ -1,5 +1,5 @@
 # Bar is Loaded
-A trinket to visualize a barbell as it is loaded in a competition setting.  This was made because a friend of mine recently competed in a powerlifting meet where several of her attempts were carelessly misloaded.  The worst being her first attempt deadlift which was supposed to 165kg/363lbs but was loaded as 185kg/408lb.  Mistakes like these are not only psychologically deterring to a competitor, but potentially dangerous.
+A trinket that renders a loaded barbell in a powerlifting competition setting.  This was made because a friend of mine recently competed in a powerlifting meet where several of her attempts were misloaded.  Mistakes such as these are potentially dangerous especially if the loading is asymmetrical or far above what it should be.  
 <br>
 <br>Live: https://danpark96.github.io/Bar-is-Loaded/
 <br>
