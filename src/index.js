@@ -70,6 +70,10 @@ const changeUnits = evt => {
 }
 
 const changeWeights = evt => {
+  if (evt.target.value == 0) {
+    document.getElementById("weight").value = ""
+  }
+  
   if (evt.target.value > 600 && UNITS == "Kilograms" || evt.target.value > 1322 && UNITS == "Pounds") {
     alert("Please enter a lower weight.")
     document.getElementById("weight").value = ""
